@@ -53,41 +53,48 @@ function closeModal() {
 
 //validation
 function validation(event){
+  let erreur = 0 ;
   //si le champ prenom est vide
   if (formPrenom.validity.valueMissing){
     event.preventDefault();
     prenomInvalide.textContent= "Veuillez entrer un prénom.";
     prenomInvalide.style.color = "red";
+    erreur ++;
   };
   //si le champ prenom est trop court
   if (formPrenom.validity.tooShort){
     event.preventDefault();
     prenomInvalide.textContent= "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
     prenomInvalide.style.color = "red";
+    erreur ++;
   };
   //si le champ nom est vide
   if(formNom.validity.valueMissing){
     event.preventDefault();
     nomInvalide.textContent="Veuillez entrer un nom de famille.";
     nomInvalide.style.color = "red";
+    erreur ++;
   };
   //si le champ nom est trop court
   if (formNom.validity.tooShort){
     event.preventDefault();
     nomInvalide.textContent= "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
     nomInvalide.style.color = "red";
+    erreur ++;
   };
   //si le champ email n'est pas valide
   if((formEmail.validity.valid)==false){
     event.preventDefault();
     emailInvalide.textContent="Veuillez entrer une adresse email valide";
     emailInvalide.style.color="red";
+    erreur ++;
   };
   //si ce n'est pas un nombre
   if((formQuantity.validity.valid)==false){
     event.preventDefault();
     quantityInvalide.textContent="Veuillez entrer un nombre";
     quantityInvalide.style.color="red";
+    erreur ++;
   };
   //si il n'y a aucune ville de choisi
   // if(formLocation.validity.valueMissing){
@@ -100,5 +107,9 @@ function validation(event){
     event.preventDefault();
     conditionInvalide.textContent="Veuillez accepter les conditions d'utilisation";
     conditionInvalide.style.color="red";
+    erreur ++;
+  };
+  if (erreur ===0){
+    alert("Merci ! Votre réservation a été reçue.")
   }
 }
