@@ -169,6 +169,35 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+.thankBground{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+}
+
+.thankYou{
+  height: 770px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
+}
+#closeThank{
+  padding: 10px 40px;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  background-color: red;
+  position: absolute;
+  bottom: 20px;
+}
 .content {
   margin: 5% auto;
   width: 100%;
@@ -181,6 +210,13 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
+}
+@media screen and (max-width: 800px){
+  .thankYou{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+  }
 }
 
 .modal-body {
@@ -519,10 +555,14 @@ footer {
 @media screen and (max-width: 800px) {
   .hero-content{
     min-width: auto;
+    padding: 0;
   }
   .hero-headline{
-    font-size: 2em;
+    font-size: 1.6em;
     text-align: center;
+  }
+  .hero-text{
+    font-size: 13px;
   }
 }
 @keyframes modalopen {

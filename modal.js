@@ -6,13 +6,15 @@ function editNav() {
     x.className = "topnav";
   }
 }
-
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const modalSubmit = document.querySelector(".btn-submit");
 const formData = document.querySelectorAll(".formData");
 const modalClose = document.querySelector(".close");
+const iconCloseThank = document.querySelector(".iconCloseThank");
+const thankModal = document.querySelector(".thankBground");
+const thankModalBtn = document.getElementById("closeThank");
 //Prenom
 const formPrenom = document.getElementById("first");
 const prenomInvalide = document.getElementById("prenomInvalide");
@@ -22,12 +24,12 @@ const nomInvalide = document.getElementById("nomInvalide");
 //Email
 const formEmail = document.getElementById("email");
 const emailInvalide = document.getElementById("emailInvalide");
+//Date de naissance
+const formDate = document.getElementById("birthdate");
+const dateInvalide = document.getElementById("dateInvalide");
 //Nombre de concours
 const formQuantity = document.getElementById("quantity");
 const quantityInvalide = document.getElementById("quantityInvalide");
-//Location
-// const formLocation = document.querySelectorAll("div.formData.location > input.checkbox-input");
-// const locationInvalide= document.getElementById("locationInvalide");
 //condition générales
 const formCondition = document.getElementById("checkbox1");
 const conditionInvalide = document.getElementById("conditionInvalide");
@@ -37,6 +39,10 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // event fermer la modal
 modalClose.addEventListener('click', closeModal);
+
+// event fermer la modal de confirmation
+thankModalBtn.addEventListener('click', closeThankModal);
+iconCloseThank.addEventListener('click', closeThankModal);
 
 //soumettre le formulaire
 modalSubmit.addEventListener("click",validation);
@@ -51,6 +57,11 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
+// fermer la modal de confirmation 
+function closeThankModal(){
+  thankModal.style.display= "none";
+}
+
 //validation
 function validation(event){
   let erreur = 0 ;
@@ -58,6 +69,8 @@ function validation(event){
   if (formPrenom.validity.valueMissing){
     event.preventDefault();
     prenomInvalide.textContent= "Veuillez entrer un prénom.";
+    formPrenom.style.border = "2px solid red"
+    prenomInvalide.style.fontSize= "12px"
     prenomInvalide.style.color = "red";
     erreur ++;
   };
@@ -65,6 +78,8 @@ function validation(event){
   if (formPrenom.validity.tooShort){
     event.preventDefault();
     prenomInvalide.textContent= "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
+    formPrenom.style.border = "2px solid red"
+    prenomInvalide.style.fontSize= "12px"
     prenomInvalide.style.color = "red";
     erreur ++;
   };
@@ -72,6 +87,8 @@ function validation(event){
   if(formNom.validity.valueMissing){
     event.preventDefault();
     nomInvalide.textContent="Veuillez entrer un nom de famille.";
+    formNom.style.border = "2px solid red"
+    nomInvalide.style.fontSize= "12px"
     nomInvalide.style.color = "red";
     erreur ++;
   };
@@ -79,6 +96,8 @@ function validation(event){
   if (formNom.validity.tooShort){
     event.preventDefault();
     nomInvalide.textContent= "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+    formNom.style.border = "2px solid red"
+    nomInvalide.style.fontSize= "12px"
     nomInvalide.style.color = "red";
     erreur ++;
   };
@@ -86,30 +105,39 @@ function validation(event){
   if((formEmail.validity.valid)==false){
     event.preventDefault();
     emailInvalide.textContent="Veuillez entrer une adresse email valide";
+    formEmail.style.border = "2px solid red"
+    emailInvalide.style.fontSize= "12px"
     emailInvalide.style.color="red";
+    erreur ++;
+  };
+  //si la date est vide
+  if (formDate.validity.valueMissing){
+    event.preventDefault();
+    dateInvalide.textContent= "Veuillez entrer une date de naissance.";
+    formDate.style.border = "2px solid red"
+    dateInvalide.style.fontSize= "12px"
+    dateInvalide.style.color = "red";
     erreur ++;
   };
   //si ce n'est pas un nombre
   if((formQuantity.validity.valid)==false){
     event.preventDefault();
     quantityInvalide.textContent="Veuillez entrer un nombre";
+    formQuantity.style.border = "2px solid red"
+    quantityInvalide.style.fontSize= "12px"
     quantityInvalide.style.color="red";
     erreur ++;
   };
-  //si il n'y a aucune ville de choisi
-  // if(formLocation.validity.valueMissing){
-  //   event.preventDefault();
-  //   locationInvalide.textContent="Veuillez entrer un nom de famille.";
-  //   locationInvalide.style.color = "red";
-  // };
   //si la case conditions générales n'est pas cochée
   if(formCondition.checked == false){
     event.preventDefault();
     conditionInvalide.textContent="Veuillez accepter les conditions d'utilisation";
+    formCondition.style.border = "2px solid red"
+    conditionInvalide.style.fontSize= "12px"
     conditionInvalide.style.color="red";
     erreur ++;
   };
   if (erreur ===0){
-    alert("Merci ! Votre réservation a été reçue.")
+      thankModal.style.display = "block";
   }
 }
