@@ -139,5 +139,6 @@ function validation(event){
   };
   if (erreur ===0){
       thankModal.style.display = "block";
+      event.preventDefault();
   }
 }
