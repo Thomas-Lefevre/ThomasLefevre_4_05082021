@@ -557,6 +557,7 @@ footer {
     margin: 0 auto;
     position: fixed;
     bottom: 0px;
+    height: 91%;
   }
   label{
     font-size: 12px;
@@ -573,6 +574,7 @@ footer {
   }
   main{
     font-size: 100%;
+    margin-top: 80px;
   }
   .hero-content{
     min-width: auto;
